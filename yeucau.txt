@@ -1,0 +1,7 @@
+Tạo 1 mục riêng cho phép đặt hàng, bao gồm vị, số phần, tên, sdt, địa chỉ pick up ( ascot vale, cbd)
+Cho phép lựa chọn giữa các vị trên từng hôp, mua 1 hộp dc chọn 1 vị, 3 vị gồm có pistachio, creme cheese, biscoff, mỗi hộp có 10 cái mini bites, sửa lại chỉ có bán 1 loại bánh duy nhất là mini bites, bỏ vào các ảnh đẹp hơn kèm địa chỉ liên hệ là ig, sdt 0466522278
+dùng các ảnh có chọn lọc chọn các ảnh phù hợp theme quán ko quá gắt mắt
+3 yêu cầu trên đã xong
+yêu cầu mới: 
+tạo 1 đường dẫn thông tin khách hàng thẳng vào 1 file gg sheet cập nhật real time gồm có các dòng, tên sdt, địa điểm pick up, số hộp, sốt gì, ghi chú,..
+thêm mục ghi chú vào chỗ cho khách hàng điền thông tin khi mua hàng

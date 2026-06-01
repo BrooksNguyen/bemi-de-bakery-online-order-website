@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bemi de Bakery</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Flour Particle Canvas & Mouse Follow Glow -->
+    <canvas id="flourCanvas"></canvas>
+    <div id="mouseGlow"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="images/IMG_4693.PNG" alt="Bemi de Bakery" style="height: 50px;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#order">Order</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+                <li><a href="https://www.instagram.com/bemi.debakery" target="_blank" class="ig-link">Instagram</a></li>
+            </ul>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Overlay Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#order">Order</a></li>
+            <li><a href="#feedback">Feedback</a></li>
+            <li><a href="https://www.instagram.com/bemi.debakery" target="_blank" class="ig-link">Instagram</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">unreasonably good bakes. period.</h1>
+            <p class="hero-location">📍 melbourne, aus</p>
+            <a href="#order" class="btn btn-primary" onclick="playSweetSound()">Order Now</a>
+        </div>
+        <div class="hero-image">
+            <img src="images/IMG_5173.PNG" alt="Bemi de Bakery">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section fade-in-section">
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="images/IMG_5016.JPG" alt="Bakery Interior">
+            </div>
+            <div class="about-content">
+                <h2 class="section-title">The Vibe</h2>
+                <p>Welcome to Bemi de Bakery. We believe in taking time to craft the perfect bake. Our space is inspired
+                    by the minimalist aesthetic, warm tones, and the bustling coffee culture of Melbourne.</p>
+                <p>Every piece is unreasonably good. Period.</p>
+                <a href="https://www.instagram.com/bemi.debakery" target="_blank" class="btn btn-outline">Follow our
+                    journey</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section fade-in-section">
+        <h2 class="section-title">Our Signature Mini Bites</h2>
+        <p class="section-subtitle">
+            Each box contains 10 exquisite mini bites. Choose one flavor per box.
+        </p>
+        <div class="product-gallery" style="grid-template-columns: 1fr; max-width: 600px; margin: 0 auto;">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/A7C03809.JPG" alt="Signature Mini Bites">
+                </div>
+                <div class="product-info" style="text-align: center;">
+                    <span class="badge-best-seller">Today's Best Seller</span>
+                    <h3 class="product-name">The Signature Box</h3>
+                    <p class="product-desc">A beautiful box of 10 unreasonably good mini bites. Available in Pistachio,
+                        Crème Cheese, or Biscoff.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section id="order" class="order-section-wrapper fade-in-section">
+        <div class="order-section">
+            <h2 class="section-title" style="margin-bottom: 40px;">Place an Order</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Number of Boxes (10 bites/box)</label>
+                    <input type="number" id="quantity" class="form-control" min="1" value="1" required>
+                </div>
+                <div class="form-group flavor-selection-wrapper">
+                    <label>Choose Flavors (1 per box)</label>
+                    <div id="flavor-container" class="flavor-container">
+                        <!-- Dynamic flavor dropdowns will be injected here via JS -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pickup">Pickup Location</label>
+                    <select id="pickup" class="form-control" required>
+                        <option value="" disabled selected>Select pickup location</option>
+                        <option value="Ascot Vale">Ascot Vale</option>
+                        <option value="CBD">CBD</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" class="form-control" rows="3" placeholder="Any special requests..."></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Submit Order</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback" class="feedback-section-wrapper fade-in-section">
+        <div class="feedback-section">
+            <h2 class="section-title">Customer Reviews</h2>
+            <p class="feedback-subtitle">Love letters from our lovely community</p>
+
+            <!-- Real-time Testimonial Gallery -->
+            <div id="reviews-container" class="reviews-grid">
+                <!-- Premium Pre-rendered Fallback Reviews (Appear Instantly) -->
+                <div class="review-card default-review-card">
+                    <div>
+                        <div class="review-header">
+                            <span class="reviewer-name">Kay Huynh</span>
+                            <span class="review-stars">★★★★★</span>
+                        </div>
+                        <p class="review-comment">"lowkey ordered too little and now i’m suffering the consequences"</p>
+                    </div>
+                    <div>
+                        <div class="review-footer">
+                            <span>Bemi de Bakery Client</span>
+                            <span>21/04/2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card default-review-card">
+                    <div>
+                        <div class="review-header">
+                            <span class="reviewer-name">Sissy</span>
+                            <span class="review-stars">★★★★★</span>
+                        </div>
+                        <p class="review-comment">"no cap this crunch got me acting unwise 💀"</p>
+                    </div>
+                    <div>
+                        <div class="review-footer">
+                            <span>Bemi de Bakery Client</span>
+                            <span>06/05/2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card default-review-card">
+                    <div>
+                        <div class="review-header">
+                            <span class="reviewer-name">Brooks</span>
+                            <span class="review-stars">★★★★★</span>
+                        </div>
+                        <p class="review-comment">"bro the crunch??? actual ASMR content 😭"</p>
+                    </div>
+                    <div>
+                        <div class="review-footer">
+                            <span>Bemi de Bakery Client</span>
+                            <span>29/05/2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Feedback Form -->
+            <div class="feedback-form-card">
+                <h3>Share Your Experience</h3>
+                <form id="feedbackForm">
+                    <div class="form-row-2col">
+                        <div class="form-group" id="nameGroup">
+                            <label for="feedbackName">Your Name</label>
+                            <input type="text" id="feedbackName" class="form-control" placeholder="E.g. Chloe">
+                        </div>
+                        <div class="form-group anonymous-group">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="anonymous">
+                                <span class="checkmark"></span>
+                                Submit anonymously
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="star-rating" id="starRating">
+                            <span class="star active" data-value="1">★</span>
+                            <span class="star active" data-value="2">★</span>
+                            <span class="star active" data-value="3">★</span>
+                            <span class="star active" data-value="4">★</span>
+                            <span class="star active" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" id="ratingValue" value="5">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment">Your Comment</label>
+                        <textarea id="comment" class="form-control" rows="3"
+                            placeholder="How was your box of mini bites?..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Add a Photo (Optional)</label>
+                        <div class="upload-zone" id="uploadZone">
+                            <input type="file" id="feedbackImage" accept="image/*" style="display: none;">
+                            <div class="upload-prompt" id="uploadPrompt">
+                                <svg class="upload-icon-svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    style="color: var(--color-accent); margin-bottom: 8px;">
+                                    <path
+                                        d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                                    </path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                                <p>Drag & drop or click to upload</p>
+                                <span style="font-size: 0.8rem; color: var(--color-gray);">PNG, JPG (max 5MB)</span>
+                            </div>
+                            <div class="image-preview-container" id="imagePreviewContainer" style="display: none;">
+                                <img id="imagePreview" src="" alt="Feedback image preview">
+                                <button type="button" class="remove-image-btn" id="removeImageBtn">×</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/IMG_4693.PNG" alt="Bemi de Bakery Logo" style="height: 80px; margin: 0 auto;">
+            </div>
+            <p>📍 Melbourne, Australia | 📞 0466522278</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/bemi.debakery" target="_blank">IG: @bemi.debakery</a>
+            </div>
+            <p class="copyright">&copy; 2026 Bemi de Bakery. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Order Success Modal -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                    stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h3 class="modal-title">Order Placed!</h3>
+            <p class="modal-message">Thank you! Your order has been successfully placed. We have sent a confirmation
+                email to you. Please check your inbox (and spam folder).</p>
+            <button id="closeModalBtn" class="btn btn-modal">Sweet!</button>
+        </div>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
