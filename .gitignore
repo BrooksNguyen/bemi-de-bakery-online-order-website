@@ -1,0 +1,6 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Sony RAW images (heavy files)
+images/*.ARW
